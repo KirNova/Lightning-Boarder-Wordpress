@@ -20,20 +20,19 @@ document.addEventListener("DOMContentLoaded", function() {
         let currentX = startX;
         let currentY = startY;
         const branches = [];
-        const mainBranchLength = document.documentElement.scrollHeight - startY; // Länge bis zum Footer
-        const segments = 10; // Anzahl der Segmente für die Hauptblitz
-        const segmentLength = mainBranchLength / segments; // Länge eines Segments
+        const mainBranchLength = document.documentElement.scrollHeight - startY;
+        const segments = 10;
+        const segmentLength = mainBranchLength / segments;
 
         const createSegment = (x, y) => {
             for (let i = 0; i < segments; i++) {
-                const angle = (Math.random() - 0.5) * 20; // Kleinerer Winkel für Hauptblitz
+                const angle = (Math.random() - 0.5) * 20;
                 const branch = createBranch(document.body, x, y, angle, segmentLength);
                 branches.push(branch.element);
 
-                // Erstelle Verästelungen
-                if (Math.random() < 0.5) { // Wahrscheinlichkeit für Verästelung
+                if (Math.random() < 0.5) {
                     const branchAngle = angle + (Math.random() - 0.5) * 60;
-                    const branchLength = segmentLength * (Math.random() * 0.5 + 0.3); // Unterschiedliche Längen, kleiner als Hauptsegment
+                    const branchLength = segmentLength * (Math.random() * 0.5 + 0.3);
                     createBranch(document.body, branch.endX, branch.endY, branchAngle, branchLength);
                 }
 
@@ -50,21 +49,18 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     const startLightning = () => {
-        const centerX = window.innerWidth * 0.5; // Mitte des Bildschirms
-        const offsetX = centerX * parseFloat(lightningSettings.offset); // Einstellbarer Offset für den Startpunkt
+        const centerX = window.innerWidth * 0.5;
+        const offsetX = centerX * parseFloat(lightningSettings.offset);
         const amount = parseInt(lightningSettings.amount);
 
         for (let i = 0; i < amount; i++) {
-            // Blitz aus den oberen Ecken
             createLightning(centerX - offsetX, 0);
             createLightning(centerX + offsetX, 0);
         }
 
-        // Randomisiertes Intervall für den nächsten Blitz
-        const nextInterval = Math.random() * (parseFloat(lightningSettings.frequency) * 1000 - 100) + 100; // Zwischen 0,1 und eingestellter Häufigkeit
+        const nextInterval = Math.random() * (parseFloat(lightningSettings.frequency) * 1000 - 100) + 100;
         setTimeout(startLightning, nextInterval);
     };
 
-    // Starte den ersten Blitz
     startLightning();
 });
