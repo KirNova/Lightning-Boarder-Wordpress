@@ -50,9 +50,12 @@ function lightning_border_settings_menu() {
 add_action('admin_menu', 'lightning_border_settings_menu');
 
 // Plugin Update-Checker einrichten
-require 'plugin-update-checker/plugin-update-checker.php';
+require LIGHTNING_BORDER_PLUGIN_DIR . 'vendor/yahnis-elsts/plugin-update-checker/plugin-update-checker.php';
 $updateChecker = Puc_v4_Factory::buildUpdateChecker(
-    'https://your-update-server.com/path/to/details.json',
+    'https://github.com/KirNova/Lightning-Boarder-Wordpress/',
     __FILE__,
     'lightning-border'
 );
+
+// Optional: GitHub-Zugangstoken hinzufügen
+$updateChecker->setAuthentication('DEIN-NEUER-GITHUB-TOKEN');
