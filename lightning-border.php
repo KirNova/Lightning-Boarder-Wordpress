@@ -58,4 +58,4 @@ $updateChecker = Puc_v4_Factory::buildUpdateChecker(
 );
 
 // Optional: GitHub-Zugangstoken hinzufügen
-$updateChecker->setAuthentication('DEIN-NEUER-GITHUB-TOKEN');
+$updateChecker->setAuthentication('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');
