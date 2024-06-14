@@ -1,0 +1,15 @@
+.lightning {
+    position: absolute;
+    width: 4px;
+    background: <?php echo get_option('lightning_color', 'white'); ?>;
+    box-shadow: 0 0 20px <?php echo get_option('lightning_color', 'white'); ?>;
+    z-index: -1; /* Blitze im Hintergrund anzeigen */
+    pointer-events: none;
+    opacity: 1;
+    animation: flash 0.4s ease-in-out forwards;
+}
+
+@keyframes flash {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
